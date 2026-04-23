@@ -54,6 +54,8 @@ def main():
         "optional_rtdsm_files",
         "required_bea_files",
         "required_calendar_files",
+        "optional_calendar_files",
+        "recommended_calendar_files",
     ]:
         present, missing = check_paths(manifest.get(key, []))
         results[key] = {
@@ -65,6 +67,13 @@ def main():
     results["required_alfred_series"] = {
         "present": alfred_present,
         "missing": alfred_missing,
+    }
+    optional_alfred_present, optional_alfred_missing = check_alfred_series(
+        manifest.get("optional_alfred_series", [])
+    )
+    results["optional_alfred_series"] = {
+        "present": optional_alfred_present,
+        "missing": optional_alfred_missing,
     }
 
     fail_groups = [
@@ -91,10 +100,24 @@ def main():
         json.dump(report, f, ensure_ascii=False, indent=2)
 
     print(f"Stage 0 validation status: {status}")
-    for group, info in results.items():
-        missing = info["missing"]
+
+    for group in fail_groups:
+        missing = results[group]["missing"]
         if missing:
             print(f"\n[{group}] missing ({len(missing)}):")
+            for item in missing:
+                print(f"  - {item}")
+
+    informational_groups = [
+        "optional_rtdsm_files",
+        "optional_calendar_files",
+        "recommended_calendar_files",
+        "optional_alfred_series",
+    ]
+    for group in informational_groups:
+        missing = results.get(group, {}).get("missing", [])
+        if missing:
+            print(f"\n[{group}] missing ({len(missing)}) [informational]:")
             for item in missing:
                 print(f"  - {item}")
 

@@ -26,13 +26,17 @@ Use this checklist before starting Stage 1.
 - [ ] `data/raw/bea/api/T10101_Q_ALL.json`
 - [ ] `data/raw/bea/api/T10106_Q_ALL.json`
 
-## E. Official release calendars
+## E. Release calendars and Census proxy timing
 
 - [ ] `data/raw/calendars/bea/full_release_schedule.html`
 - [ ] `data/raw/calendars/bls/employment_situation.html`
 - [ ] `data/raw/calendars/bls/current_year.html`
-- [ ] `data/raw/calendars/census/economic_indicators_calendar.html`
 - [ ] `data/raw/calendars/fed_g17/release_dates.html`
+- [ ] `data/raw/calendars/census/economic_indicators_calendar.html` (optional official HTML if available)
+- [ ] `python scripts/build_census_proxy_calendar.py` runs successfully
+- [ ] `data/raw/calendars/census/census_proxy_release_events.csv` (recommended)
+- [ ] `data/raw/calendars/census/census_proxy_release_calendar.csv` (recommended)
+- [ ] `data/raw/calendars/census/census_proxy_calendar_metadata.json` (recommended)
 
 ## F. Validation
 
@@ -41,4 +45,5 @@ Use this checklist before starting Stage 1.
 
 ## G. Exit condition
 
-Only move to Stage 1 after every required item above is complete.
+Only move to Stage 1 after every required item above is complete. For Census timing, the preferred
+Stage 0 path is the ALFRED-based proxy calendar even when the official Census HTML is unavailable.

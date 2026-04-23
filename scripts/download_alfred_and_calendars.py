@@ -17,6 +17,36 @@ if not FRED_API_KEY:
 
 BASE_FRED = "https://api.stlouisfed.org/fred"
 BASE_DIR = PROJECT_ROOT / "data" / "raw"
+CENSUS_CALENDAR_URL = "https://www.census.gov/economic-indicators/calendar-listview.html"
+
+
+def resolve_path_from_env(env_name, default_path):
+    value = os.getenv(env_name, "").strip()
+    if not value:
+        return default_path
+
+    candidate = Path(value).expanduser()
+    if not candidate.is_absolute():
+        candidate = PROJECT_ROOT / candidate
+    return candidate
+
+
+CENSUS_CALENDAR_MANUAL_HTML = resolve_path_from_env(
+    "CENSUS_CALENDAR_MANUAL_HTML",
+    BASE_DIR / "calendars" / "census" / "economic_indicators_calendar.manual.html",
+)
+
+CALENDAR_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/135.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache",
+}
 
 SERIES = [
     "GDPC1", "A191RL1Q225SBEA",
@@ -28,31 +58,38 @@ SERIES = [
 ]
 
 CALENDAR_JOBS = [
-    (
-        "https://www.bea.gov/news/schedule/full",
-        BASE_DIR / "calendars" / "bea" / "full_release_schedule.html",
-        BASE_DIR / "calendars" / "bea" / "full_release_schedule"
-    ),
-    (
-        "https://www.bls.gov/schedule/news_release/empsit.htm",
-        BASE_DIR / "calendars" / "bls" / "employment_situation.html",
-        BASE_DIR / "calendars" / "bls" / "employment_situation"
-    ),
-    (
-        "https://www.bls.gov/schedule/news_release/current_year.asp",
-        BASE_DIR / "calendars" / "bls" / "current_year.html",
-        BASE_DIR / "calendars" / "bls" / "current_year"
-    ),
-    (
-        "https://www.census.gov/economic-indicators/calendar-listview.html",
-        BASE_DIR / "calendars" / "census" / "economic_indicators_calendar.html",
-        BASE_DIR / "calendars" / "census" / "economic_indicators_calendar"
-    ),
-    (
-        "https://www.federalreserve.gov/releases/g17/release_dates.htm",
-        BASE_DIR / "calendars" / "fed_g17" / "release_dates.html",
-        BASE_DIR / "calendars" / "fed_g17" / "release_dates"
-    ),
+    {
+        "name": "bea",
+        "url": "https://www.bea.gov/news/schedule/full",
+        "raw_html_path": BASE_DIR / "calendars" / "bea" / "full_release_schedule.html",
+        "parsed_prefix": BASE_DIR / "calendars" / "bea" / "full_release_schedule",
+    },
+    {
+        "name": "bls_empsit",
+        "url": "https://www.bls.gov/schedule/news_release/empsit.htm",
+        "raw_html_path": BASE_DIR / "calendars" / "bls" / "employment_situation.html",
+        "parsed_prefix": BASE_DIR / "calendars" / "bls" / "employment_situation",
+    },
+    {
+        "name": "bls_current_year",
+        "url": "https://www.bls.gov/schedule/news_release/current_year.asp",
+        "raw_html_path": BASE_DIR / "calendars" / "bls" / "current_year.html",
+        "parsed_prefix": BASE_DIR / "calendars" / "bls" / "current_year",
+    },
+    {
+        "name": "census",
+        "url": CENSUS_CALENDAR_URL,
+        "raw_html_path": BASE_DIR / "calendars" / "census" / "economic_indicators_calendar.html",
+        "parsed_prefix": BASE_DIR / "calendars" / "census" / "economic_indicators_calendar",
+        "manual_html_path": CENSUS_CALENDAR_MANUAL_HTML,
+        "blocked_html_path": BASE_DIR / "calendars" / "census" / "economic_indicators_calendar.blocked.html",
+    },
+    {
+        "name": "fed_g17",
+        "url": "https://www.federalreserve.gov/releases/g17/release_dates.htm",
+        "raw_html_path": BASE_DIR / "calendars" / "fed_g17" / "release_dates.html",
+        "parsed_prefix": BASE_DIR / "calendars" / "fed_g17" / "release_dates",
+    },
 ]
 
 
@@ -88,6 +125,11 @@ def get_json(endpoint, params, max_retries=3, sleep_seconds=1.0):
 def save_json(path, obj):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
+
+
+def save_text(path, text):
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
 
 
 def download_vintage_dates(series_id):
@@ -148,28 +190,118 @@ def download_all_observations_by_vintage(series_id):
         pd.DataFrame(columns=["realtime_start", "realtime_end", "date", "value"]).to_csv(out_csv, index=False)
 
 
-def download_calendar_page(url, raw_html_path, parsed_prefix):
-    response = requests.get(url, timeout=120)
-    response.raise_for_status()
-    html = response.text
+def build_calendar_session():
+    session = requests.Session()
+    session.headers.update(CALENDAR_HEADERS)
+    return session
 
-    with open(raw_html_path, "w", encoding="utf-8") as f:
-        f.write(html)
 
+def looks_like_access_block(html, status_code):
+    markers = [
+        "attention required! | cloudflare",
+        "sorry, you have been blocked",
+        "you are unable to access",
+        "cf-error-details",
+        "cloudflare ray id",
+        "please enable cookies",
+    ]
+    lowered = html.lower()
+    return status_code in {403, 429} or any(marker in lowered for marker in markers)
+
+
+def parse_calendar_tables(html, parsed_prefix):
     try:
         tables = pd.read_html(StringIO(html))
         for i, table in enumerate(tables, start=1):
             table.to_csv(f"{parsed_prefix}_table_{i}.csv", index=False)
+        return len(tables)
     except Exception:
-        pass
+        return 0
+
+
+def load_manual_calendar_html(path):
+    if path is None or not path.exists():
+        return None
+    return path.read_text(encoding="utf-8")
+
+
+def fetch_calendar_html(session, job):
+    response = session.get(job["url"], timeout=120)
+    html = response.text
+
+    if looks_like_access_block(html, response.status_code):
+        blocked_html_path = job.get("blocked_html_path")
+        if blocked_html_path is not None:
+            save_text(blocked_html_path, html)
+            print(
+                f"[WARN] Saved blocked {job['name']} response -> "
+                f"{blocked_html_path}"
+            )
+
+        manual_html_path = job.get("manual_html_path")
+        manual_html = load_manual_calendar_html(manual_html_path)
+        if manual_html is not None:
+            print(
+                f"[WARN] {job['name']} calendar blocked by source; "
+                f"using manual fallback from {manual_html_path}"
+            )
+            return manual_html, f"manual:{manual_html_path}"
+
+        if job["name"] == "census":
+            print(
+                "[WARN] Census calendar request was blocked by the source. "
+                "Skipping the official Census HTML download and continuing. "
+                "Use the ALFRED-based Census proxy calendar for release-day alignment."
+            )
+            return None, "blocked"
+
+        raise RuntimeError(
+            f"Calendar download blocked for {job['url']} "
+            f"(status {response.status_code})."
+        )
+
+    response.raise_for_status()
+    return html, "remote"
+
+
+def download_calendar_page(session, job):
+    html, source = fetch_calendar_html(session, job)
+    if html is None:
+        return False
+
+    save_text(job["raw_html_path"], html)
+    table_count = parse_calendar_tables(html, job["parsed_prefix"])
+    print(
+        f"[OK] Saved {job['name']} calendar from {source} "
+        f"-> {job['raw_html_path']}"
+    )
+    if table_count:
+        print(
+            f"[OK] Parsed {table_count} table(s) -> "
+            f"{job['parsed_prefix']}_table_*.csv"
+        )
+    return True
 
 
 def download_calendars():
-    for url, raw_html_path, parsed_prefix in CALENDAR_JOBS:
-        print(f"Downloading calendar: {url}")
-        raw_html_path.parent.mkdir(parents=True, exist_ok=True)
-        download_calendar_page(url, raw_html_path, str(parsed_prefix))
+    session = build_calendar_session()
+    failures = []
+
+    for job in CALENDAR_JOBS:
+        print(f"Downloading calendar: {job['url']}")
+        job["raw_html_path"].parent.mkdir(parents=True, exist_ok=True)
+        try:
+            downloaded = download_calendar_page(session, job)
+            if not downloaded:
+                failures.append(
+                    (job["name"], "calendar blocked by source; official HTML skipped")
+                )
+        except Exception as exc:
+            failures.append((job["name"], str(exc)))
+            print(f"[WARN] Failed calendar {job['name']}: {exc}")
         time.sleep(0.2)
+
+    return failures
 
 
 def main():
@@ -188,7 +320,11 @@ def main():
             print(f"[WARN] Failed series {series_id}: {e}")
             continue
 
-    download_calendars()
+    calendar_failures = download_calendars()
+    if calendar_failures:
+        print("\nCalendar download warnings:")
+        for name, message in calendar_failures:
+            print(f"  - {name}: {message}")
     print("Done.")
 
 

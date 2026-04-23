@@ -1,0 +1,43 @@
+{
+  "title": "Census proxy release calendar",
+  "status": "proxy_not_official",
+  "source": "ALFRED",
+  "proxy_method": "realtime_start_availability_proxy",
+  "summary": "Proxy release calendar for Census-related indicators derived from ALFRED vintage availability dates for the series already used in this repository.",
+  "important_notes": [
+    "This is NOT an official Census release calendar.",
+    "It is a proxy calendar derived from ALFRED vintage availability dates.",
+    "It preserves daily availability logic via ALFRED release-day vintage dates.",
+    "It does not claim exact official intraday release timestamps.",
+    "release_time_et is intentionally left blank for Census proxy events.",
+    "Census indicator values remain the canonical ALFRED/FRED values already used elsewhere in the repo."
+  ],
+  "release_blocks": {
+    "retail_sales": [
+      "RSAFS",
+      "RSXFS"
+    ],
+    "housing": [
+      "HOUST",
+      "PERMIT"
+    ],
+    "durable_goods": [
+      "DGORDER",
+      "NEWORDER"
+    ],
+    "inventories": [
+      "BUSINV",
+      "ISRATIO"
+    ],
+    "trade": [
+      "BOPGSTB",
+      "BOPTEXP",
+      "BOPTIMP"
+    ]
+  },
+  "input_pattern": "data/raw/alfred/series_observations/{SERIES_ID}.csv",
+  "artifacts": {
+    "series_level_events": "data/raw/calendars/census/census_proxy_release_events.csv",
+    "block_level_calendar": "data/raw/calendars/census/census_proxy_release_calendar.csv"
+  }
+}

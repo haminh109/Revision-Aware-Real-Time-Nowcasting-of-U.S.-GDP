@@ -55,6 +55,23 @@
       ],
       "missing": []
     },
+    "optional_calendar_files": {
+      "present": [
+        "data/raw/calendars/census/economic_indicators_calendar.blocked.html"
+      ],
+      "missing": [
+        "data/raw/calendars/census/economic_indicators_calendar.html",
+        "data/raw/calendars/census/economic_indicators_calendar.manual.html"
+      ]
+    },
+    "recommended_calendar_files": {
+      "present": [
+        "data/raw/calendars/census/census_proxy_release_events.csv",
+        "data/raw/calendars/census/census_proxy_release_calendar.csv",
+        "data/raw/calendars/census/census_proxy_calendar_metadata.json"
+      ],
+      "missing": []
+    },
     "required_alfred_series": {
       "present": [
         "GDPC1",
@@ -85,6 +102,13 @@
         "T10Y3MM"
       ],
       "missing": []
+    },
+    "optional_alfred_series": {
+      "present": [],
+      "missing": [
+        "SP500",
+        "NAPM"
+      ]
     }
   }
 }

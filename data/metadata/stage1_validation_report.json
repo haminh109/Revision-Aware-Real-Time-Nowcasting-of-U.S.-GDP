@@ -1,0 +1,71 @@
+{
+  "stage": "stage_1",
+  "status": "PASS",
+  "project_root": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 6/Time Series/Revision-Aware-Real-Time-Nowcasting-of-U.S.-GDP",
+  "script_checks": {
+    "present": [
+      "scripts/01_parse_rtdsm_release_specific.py",
+      "scripts/02_parse_rtdsm_complete_vintages.py",
+      "scripts/03_parse_alfred_monthly.py",
+      "scripts/04_build_release_calendar_master.py",
+      "scripts/validate_stage1.py"
+    ],
+    "missing": [],
+    "status": "PASS"
+  },
+  "artifact_checks": {
+    "gdp_release_targets": {
+      "path": "data/bronze/targets/gdp_release_targets.csv",
+      "status": "PASS",
+      "row_count": 957,
+      "issues": []
+    },
+    "gdp_complete_vintages_long": {
+      "path": "data/bronze/targets/gdp_complete_vintages_long.csv",
+      "status": "PASS",
+      "row_count": 46770,
+      "issues": []
+    },
+    "alfred_monthly_long": {
+      "path": "data/bronze/indicators/alfred_monthly_long.csv",
+      "status": "PASS",
+      "row_count": 6640775,
+      "issues": [],
+      "series_seen": [
+        "A191RL1Q225SBEA",
+        "AWHMAN",
+        "BOPGSTB",
+        "BOPTEXP",
+        "BOPTIMP",
+        "BUSINV",
+        "DGORDER",
+        "DSPIC96",
+        "FEDFUNDS",
+        "GDPC1",
+        "GS10",
+        "HOUST",
+        "INDPRO",
+        "ISRATIO",
+        "NEWORDER",
+        "PAYEMS",
+        "PCECC96",
+        "PERMIT",
+        "RSAFS",
+        "RSXFS",
+        "T10Y3MM",
+        "TB3MS",
+        "TCU",
+        "UMCSENT",
+        "UNRATE",
+        "W875RX1"
+      ]
+    },
+    "release_calendar_master": {
+      "path": "data/bronze/calendars/release_calendar_master.csv",
+      "status": "PASS",
+      "row_count": 3994,
+      "issues": []
+    }
+  },
+  "hard_failures": []
+}

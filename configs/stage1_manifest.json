@@ -1,0 +1,225 @@
+{
+  "required_scripts": [
+    "scripts/01_parse_rtdsm_release_specific.py",
+    "scripts/02_parse_rtdsm_complete_vintages.py",
+    "scripts/03_parse_alfred_monthly.py",
+    "scripts/04_build_release_calendar_master.py",
+    "scripts/validate_stage1.py"
+  ],
+  "artifacts": {
+    "gdp_release_targets": {
+      "path": "data/bronze/targets/gdp_release_targets.csv",
+      "required_columns": [
+        "source_family",
+        "source_dataset",
+        "source_file",
+        "source_sheet",
+        "target_variable_id",
+        "target_description",
+        "source_measure",
+        "source_measure_label",
+        "source_last_updated",
+        "target_quarter",
+        "target_year",
+        "target_quarter_number",
+        "release_stage",
+        "release_stage_order",
+        "release_date",
+        "release_date_status",
+        "value",
+        "notes"
+      ],
+      "non_null_columns": [
+        "source_family",
+        "source_dataset",
+        "source_file",
+        "source_sheet",
+        "target_variable_id",
+        "target_description",
+        "source_measure",
+        "source_measure_label",
+        "source_last_updated",
+        "target_quarter",
+        "target_year",
+        "target_quarter_number",
+        "release_stage",
+        "release_stage_order",
+        "release_date_status",
+        "value",
+        "notes"
+      ],
+      "unique_key": [
+        "target_quarter",
+        "release_stage"
+      ],
+      "sort_keys": [
+        "target_year",
+        "target_quarter_number",
+        "release_stage_order"
+      ],
+      "numeric_columns": [
+        "target_year",
+        "target_quarter_number",
+        "release_stage_order",
+        "value"
+      ],
+      "date_columns": [
+        "source_last_updated"
+      ],
+      "quarter_label_columns": [
+        "target_quarter"
+      ]
+    },
+    "gdp_complete_vintages_long": {
+      "path": "data/bronze/targets/gdp_complete_vintages_long.csv",
+      "required_columns": [
+        "source_family",
+        "source_dataset",
+        "source_file",
+        "source_sheet",
+        "target_variable_id",
+        "source_measure",
+        "target_quarter",
+        "target_year",
+        "target_quarter_number",
+        "vintage_period",
+        "vintage_year",
+        "vintage_quarter_number",
+        "vintage_label_raw",
+        "value",
+        "notes"
+      ],
+      "non_null_columns": [
+        "source_family",
+        "source_dataset",
+        "source_file",
+        "source_sheet",
+        "target_variable_id",
+        "source_measure",
+        "target_quarter",
+        "target_year",
+        "target_quarter_number",
+        "vintage_period",
+        "vintage_year",
+        "vintage_quarter_number",
+        "vintage_label_raw",
+        "value",
+        "notes"
+      ],
+      "unique_key": [
+        "target_quarter",
+        "vintage_period"
+      ],
+      "sort_keys": [
+        "target_year",
+        "target_quarter_number",
+        "vintage_year",
+        "vintage_quarter_number"
+      ],
+      "numeric_columns": [
+        "target_year",
+        "target_quarter_number",
+        "vintage_year",
+        "vintage_quarter_number",
+        "value"
+      ],
+      "quarter_label_columns": [
+        "target_quarter",
+        "vintage_period"
+      ]
+    },
+    "alfred_monthly_long": {
+      "path": "data/bronze/indicators/alfred_monthly_long.csv",
+      "required_columns": [
+        "source_family",
+        "series_id",
+        "series_frequency",
+        "raw_schema",
+        "observation_date",
+        "realtime_start",
+        "realtime_end",
+        "realtime_end_source",
+        "value_raw",
+        "value_numeric",
+        "is_missing_value",
+        "provenance_observations_file",
+        "provenance_vintage_dates_file"
+      ],
+      "non_null_columns": [
+        "source_family",
+        "series_id",
+        "series_frequency",
+        "raw_schema",
+        "observation_date",
+        "realtime_start",
+        "realtime_end",
+        "realtime_end_source",
+        "value_raw",
+        "is_missing_value",
+        "provenance_observations_file",
+        "provenance_vintage_dates_file"
+      ],
+      "unique_key": [
+        "series_id",
+        "observation_date",
+        "realtime_start"
+      ],
+      "sort_keys": [
+        "series_id",
+        "observation_date",
+        "realtime_start"
+      ],
+      "date_columns": [
+        "observation_date",
+        "realtime_start",
+        "realtime_end"
+      ]
+    },
+    "release_calendar_master": {
+      "path": "data/bronze/calendars/release_calendar_master.csv",
+      "required_columns": [
+        "event_id",
+        "source_family",
+        "source_type",
+        "source_subsource",
+        "coverage_scope",
+        "release_block",
+        "release_name",
+        "reference_period_label",
+        "release_date",
+        "release_time_et",
+        "release_time_status",
+        "included_series",
+        "proxy_method",
+        "provenance_file",
+        "notes"
+      ],
+      "non_null_columns": [
+        "event_id",
+        "source_family",
+        "source_type",
+        "source_subsource",
+        "coverage_scope",
+        "release_block",
+        "release_name",
+        "release_date",
+        "release_time_status",
+        "provenance_file"
+      ],
+      "unique_key": [
+        "event_id"
+      ],
+      "sort_keys": [
+        "release_date",
+        "release_time_et",
+        "source_family",
+        "release_block",
+        "release_name",
+        "reference_period_label"
+      ],
+      "date_columns": [
+        "release_date"
+      ]
+    }
+  }
+}

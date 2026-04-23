@@ -35,12 +35,21 @@ JOBS = {
     },
 }
 
+
+def redact_user_id(payload):
+    request_params = payload.get("BEAAPI", {}).get("Request", {}).get("RequestParam", [])
+    for item in request_params:
+        if str(item.get("ParameterName", "")).upper() == "USERID":
+            item["ParameterValue"] = "REDACTED"
+    return payload
+
+
 for filename, params in JOBS.items():
     query = dict(params)
     query["UserID"] = BEA_API_KEY
     response = requests.get(BASE_URL, params=query, timeout=120)
     response.raise_for_status()
-    data = response.json()
+    data = redact_user_id(response.json())
 
     with open(OUTDIR / filename, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)

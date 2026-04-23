@@ -2,13 +2,22 @@
   "stage": "stage_0",
   "status": "PASS",
   "project_root": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 6/Time Series/Revision-Aware-Real-Time-Nowcasting-of-U.S.-GDP",
-  "results": {
+  "structural_checks": {
     "required_root_files": {
       "present": [
         "README.md",
         "requirements.txt",
         ".env.example",
         ".gitignore"
+      ],
+      "missing": []
+    },
+    "required_stage0_scripts": {
+      "present": [
+        "scripts/download_alfred_and_calendars.py",
+        "scripts/download_bea.py",
+        "scripts/build_census_proxy_calendar.py",
+        "scripts/validate_stage0.py"
       ],
       "missing": []
     },
@@ -72,43 +81,287 @@
       ],
       "missing": []
     },
-    "required_alfred_series": {
-      "present": [
-        "GDPC1",
-        "A191RL1Q225SBEA",
-        "PAYEMS",
-        "UNRATE",
-        "INDPRO",
-        "TCU",
-        "AWHMAN",
-        "W875RX1",
-        "DSPIC96",
-        "PCECC96",
-        "RSAFS",
-        "RSXFS",
-        "UMCSENT",
-        "HOUST",
-        "PERMIT",
-        "DGORDER",
-        "NEWORDER",
-        "BUSINV",
-        "ISRATIO",
-        "BOPGSTB",
-        "BOPTEXP",
-        "BOPTIMP",
-        "FEDFUNDS",
-        "TB3MS",
-        "GS10",
-        "T10Y3MM"
-      ],
-      "missing": []
+    "requirements_file": {
+      "status": "PASS",
+      "detail": "requirements.txt contains the baseline Stage 0 dependencies.",
+      "missing_tokens": []
     },
-    "optional_alfred_series": {
-      "present": [],
-      "missing": [
-        "SP500",
-        "NAPM"
-      ]
+    "env_template": {
+      "status": "PASS",
+      "detail": ".env.example contains the expected API-key placeholders.",
+      "missing_keys": []
+    },
+    "gitignore": {
+      "status": "PASS",
+      "detail": ".gitignore covers local environment files and caches.",
+      "missing_tokens": []
     }
-  }
+  },
+  "semantic_checks": {
+    "rtdsm_release_specific": {
+      "status": "PASS",
+      "detail": "The RTDSM release-stage workbook has the expected sheets, columns, and numeric content.",
+      "row_count": 241,
+      "unit_line": "Unit of Measurement: Q/Q Growth (Annual Rate, Percentage Points)",
+      "sheet_names": [
+        "NOTES",
+        "DATA"
+      ]
+    },
+    "rtdsm_complete_vintages": {
+      "status": "PASS",
+      "detail": "The RTDSM complete-vintage workbook has the expected quarterly vintage-matrix schema.",
+      "row_count": 316,
+      "vintage_column_count": 242,
+      "sample_vintage_columns": [
+        "ROUTPUT65Q4",
+        "ROUTPUT66Q1",
+        "ROUTPUT66Q2",
+        "ROUTPUT66Q3",
+        "ROUTPUT66Q4"
+      ]
+    },
+    "rtdsm_optional_monthly_vintages": {
+      "status": "PASS",
+      "detail": "The optional RTDSM monthly workbook has the expected monthly vintage-matrix schema.",
+      "sample_invalid_columns": [],
+      "vintage_column_count": 726
+    },
+    "bea_calendar": {
+      "status": "PASS",
+      "detail": "The BEA release schedule HTML contains a parseable release table.",
+      "row_count": 61,
+      "declared_scope_year": "2026"
+    },
+    "bls_current_year_calendar": {
+      "status": "PASS",
+      "detail": "The BLS current-year calendar HTML contains parseable dated release rows.",
+      "row_count": 159
+    },
+    "bls_employment_calendar": {
+      "status": "PASS",
+      "detail": "The Employment Situation calendar HTML contains a parseable schedule table.",
+      "row_count": 14
+    },
+    "fed_g17_calendar": {
+      "status": "PASS",
+      "detail": "The Federal Reserve G.17 HTML contains parseable historical and scheduled release-date rows.",
+      "row_count": 952,
+      "sample_invalid_rows": []
+    },
+    "census_proxy": {
+      "status": "PASS",
+      "detail": "Census proxy artifacts are present and preserve the proxy-not-official distinction honestly.",
+      "series_event_rows": 4841,
+      "block_calendar_rows": 2825
+    },
+    "bea_api_tables": {
+      "data/raw/bea/api/T10101_Q_ALL.json": {
+        "status": "PASS",
+        "detail": "BEA API payload is populated and the request UserID is scrubbed.",
+        "row_count": 7875,
+        "utc_production_time": "2026-04-22T10:05:02.740"
+      },
+      "data/raw/bea/api/T10106_Q_ALL.json": {
+        "status": "PASS",
+        "detail": "BEA API payload is populated and the request UserID is scrubbed.",
+        "row_count": 4712,
+        "utc_production_time": "2026-04-22T10:05:07.357"
+      }
+    },
+    "required_alfred_series": {
+      "GDPC1": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 413,
+        "observation_column_count": 414
+      },
+      "A191RL1Q225SBEA": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 122,
+        "observation_column_count": 123
+      },
+      "PAYEMS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 854,
+        "observation_column_count": 855
+      },
+      "UNRATE": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 794,
+        "observation_column_count": 795
+      },
+      "INDPRO": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 1218,
+        "observation_column_count": 1219
+      },
+      "TCU": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 380,
+        "observation_column_count": 381
+      },
+      "AWHMAN": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 773,
+        "observation_column_count": 774
+      },
+      "W875RX1": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 190,
+        "observation_column_count": 191
+      },
+      "DSPIC96": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 561,
+        "observation_column_count": 562
+      },
+      "PCECC96": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 696,
+        "observation_column_count": 697
+      },
+      "RSAFS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 319,
+        "observation_column_count": 320
+      },
+      "RSXFS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 319,
+        "observation_column_count": 320
+      },
+      "UMCSENT": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 331,
+        "observation_column_count": 332
+      },
+      "HOUST": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 784,
+        "observation_column_count": 785
+      },
+      "PERMIT": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 611,
+        "observation_column_count": 612
+      },
+      "DGORDER": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 659,
+        "observation_column_count": 660
+      },
+      "NEWORDER": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 706,
+        "observation_column_count": 707
+      },
+      "BUSINV": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 356,
+        "observation_column_count": 357
+      },
+      "ISRATIO": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 351,
+        "observation_column_count": 352
+      },
+      "BOPGSTB": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 352,
+        "observation_column_count": 353
+      },
+      "BOPTEXP": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 192,
+        "observation_column_count": 193
+      },
+      "BOPTIMP": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 192,
+        "observation_column_count": 193
+      },
+      "FEDFUNDS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 359,
+        "observation_column_count": 360
+      },
+      "TB3MS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 354,
+        "observation_column_count": 355
+      },
+      "GS10": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 353,
+        "observation_column_count": 354
+      },
+      "T10Y3MM": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 144,
+        "observation_column_count": 145
+      }
+    },
+    "optional_alfred_series": {}
+  },
+  "warnings": [
+    "Official Census HTML is optional and currently unavailable; the ALFRED-based proxy calendar remains the timing source.",
+    "Optional ALFRED series are not present; this does not block Stage 0 or Stage 1.",
+    "RTDSM release-specific targets are explicitly q/q annualized growth rates, while the complete-vintage RTDSM matrix is a separate level-like numeric history; downstream stages must not silently treat them as identical measures.",
+    "BEA official calendar raw coverage currently appears to be a current-year snapshot (2026), not a full historical archive.",
+    "BLS official calendar raw coverage currently reflects current-year and scheduled pages, not a completed historical archive.",
+    "Federal Reserve G.17 release dates are official, but the raw page does not publish intraday release times; no time should be fabricated downstream."
+  ],
+  "hard_failures": []
 }

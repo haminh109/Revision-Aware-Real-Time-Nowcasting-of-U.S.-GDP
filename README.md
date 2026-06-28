@@ -1,10 +1,9 @@
-# RADFM Code: Release-Structured Revision-Aware Real-Time GDP Nowcasting
+# Release-Ladder Real-Time Nowcasting of U.S. GDP
 
-This `Code/` folder contains the reproducible code, configuration files, tests,
-documentation, validation metadata, and empirical output artifacts for the
+This repository contains the final report and reproducible code package for the
 course submission **Release-Ladder Real-Time Nowcasting of U.S. GDP**.
 
-The repository root is intentionally organized as a compact submission package:
+The repository is intentionally organized as a compact submission package:
 
 - `Final Report/`: the editable LaTeX report, compiled PDF, and report figures.
 - `Code/`: source code, run scripts, tests, configs, documentation, validation
@@ -17,26 +16,29 @@ The empirical claim supported by this package is:
 > mixed-frequency monthly information.
 
 Generated empirical outputs and replication-style result artifacts live under
-`outputs/`. Raw and intermediate vintage data are source-dependent and are not
-bundled in full; see `data/README.md` for the expected local data layout and
-rebuild path.
+`Code/outputs/`. Raw and intermediate vintage data are source-dependent and are
+not bundled in full; see `Code/data/README.md` for the expected local data
+layout and rebuild path.
+
+Unless otherwise stated, detailed pipeline paths in the sections below are
+relative to the `Code/` directory.
 
 ## Reproducing and inspecting the code
 
-The repository includes a `Makefile` so common replication commands can be run
-from short, stable targets:
+The code folder includes a `Makefile` so common replication commands can be run
+from short, stable targets directly from the repository root:
 
 ```bash
-make help           # list available targets
-make data-build     # rebuild data layers and validation reports
-make pipeline-smoke # quick smoke test of the evidence pipeline
-make pipeline-full  # full frozen evidence run; compute intensive
-make pdf            # rebuild ../Final Report/Final Report.pdf
-make test           # run the test suite
+make -C Code help           # list available targets
+make -C Code data-build     # rebuild data layers and validation reports
+make -C Code pipeline-smoke # quick smoke test of the evidence pipeline
+make -C Code pipeline-full  # full frozen evidence run; compute intensive
+make -C Code pdf            # rebuild Final Report/Final Report.pdf
+make -C Code test           # run the test suite
 ```
 
-The Makefile is a convenience layer over the scripts in `scripts/`; it does not
-replace the detailed runbooks in `docs/`.
+The Makefile is a convenience layer over the scripts in `Code/scripts/`; it does
+not replace the detailed runbooks in `Code/docs/`.
 
 The project builds a reproducible data and modeling pipeline for real-time GDP
 nowcasting using:
@@ -74,22 +76,21 @@ Stage 1 begins only after Stage 0 is locked. It will create normalized artifacts
 ## Repository structure
 
 ```text
-Code/
-├── configs/
-│   └── stage0_manifest.json
-├── data/
-│   ├── README.md
-│   └── metadata/
-│       └── stage0_validation_report.json
-├── docs/
-├── full_state_space_release_revision_dfm/
-├── outputs/
-├── scripts/
-├── tests/
-├── .env.example
-├── .gitignore
-├── Makefile
-├── requirements.txt
+.
+├── Final Report/
+│   ├── Final Report.pdf
+│   ├── Final Report.tex
+│   └── figures/
+├── Code/
+│   ├── configs/
+│   ├── data/
+│   ├── docs/
+│   ├── full_state_space_release_revision_dfm/
+│   ├── outputs/
+│   ├── scripts/
+│   ├── tests/
+│   ├── Makefile
+│   └── requirements.txt
 └── README.md
 ```
 
@@ -173,6 +174,7 @@ Use Python 3.10 or newer. On this machine the verified interpreter is:
 Create a virtual environment and install dependencies:
 
 ```bash
+cd Code
 /opt/anaconda3/bin/python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -199,6 +201,8 @@ manual raw HTML export. It is not required for the ALFRED-based Census proxy cal
 ---
 
 ## Running Stage 0 download scripts
+
+Run the following commands from `Code/`.
 
 ### ALFRED + calendars
 
@@ -284,9 +288,9 @@ Implement the Stage 1 scripts in this order:
 
 ## Full-state-space evidence pipeline
 
-The folder `full_state_space_release_revision_dfm/` contains the upgraded
-modeling and evidence-generation code used by the report and retained for
-future extensions:
+The folder `Code/full_state_space_release_revision_dfm/` contains the upgraded
+modeling and evidence-generation code used by the report and retained for future
+extensions:
 
 - full Kalman filter, Rauch--Tung--Striebel smoother, and EM estimation;
 - joint GDP release ladder `A/S/T/M` state-space model;
@@ -311,6 +315,7 @@ The full-state-space model is now wired into the exact/pseudo backtest. A report
 Useful commands:
 
 ```bash
+cd Code
 python -m full_state_space_release_revision_dfm.run_smoke_tests
 python -m full_state_space_release_revision_dfm.example_bronze_smoke
 python -m full_state_space_release_revision_dfm.prototype_quarterly_backtest --max-origins 6 --max-iter 6

@@ -5,7 +5,7 @@ MAX_ORIGINS ?= 0
 MCS_REPS ?= 5000
 MATURE_MAX_ITER ?= 50
 MATURE_VARIANTS ?= mature_1y mature_3y mature_latest
-FREEZE_NAME ?= radfm_journal_candidate
+FREEZE_NAME ?= radfm_evidence_package
 
 .PHONY: help install fetch-data stage0 stage1 stage2 timing-inputs validate data-build pipeline-smoke pipeline-full pdf pdf-all test clean-pycache
 
@@ -23,8 +23,8 @@ help:
 	@echo "  make data-build       Run fetch-data, stage1, stage2, timing-inputs, validate"
 	@echo ""
 	@echo "Modeling and outputs:"
-	@echo "  make pipeline-smoke   Fast smoke run of the journal pipeline"
-	@echo "  make pipeline-full    Full journal-candidate pipeline; can take a long time"
+	@echo "  make pipeline-smoke   Fast smoke run of the evidence pipeline"
+	@echo "  make pipeline-full    Full evidence pipeline; can take a long time"
 	@echo ""
 	@echo "Manuscript:"
 	@echo "  make pdf              Rebuild ../Final Report/Final Report.pdf"

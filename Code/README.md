@@ -29,8 +29,8 @@ from short, stable targets:
 ```bash
 make help           # list available targets
 make data-build     # rebuild data layers and validation reports
-make pipeline-smoke # quick smoke test of the journal pipeline
-make pipeline-full  # full frozen journal-candidate run; compute intensive
+make pipeline-smoke # quick smoke test of the evidence pipeline
+make pipeline-full  # full frozen evidence run; compute intensive
 make pdf            # rebuild ../Final Report/Final Report.pdf
 make test           # run the test suite
 ```
@@ -282,9 +282,11 @@ Implement the Stage 1 scripts in this order:
 
 ---
 
-## Journal-version modeling groundwork
+## Full-state-space evidence pipeline
 
-The folder `full_state_space_release_revision_dfm/` contains the upgraded modeling groundwork for a later journal version:
+The folder `full_state_space_release_revision_dfm/` contains the upgraded
+modeling and evidence-generation code used by the report and retained for
+future extensions:
 
 - full Kalman filter, Rauch--Tung--Striebel smoother, and EM estimation;
 - joint GDP release ladder `A/S/T/M` state-space model;
@@ -302,7 +304,7 @@ The folder `full_state_space_release_revision_dfm/` contains the upgraded modeli
 - a convergence stability builder for comparing multiple `max_iter` runs.
 - a variance audit builder for predictive variance, interval coverage, symmetry, and positive-semidefinite covariance checks.
 - a multi-initialization audit runner for EM local-solution sensitivity.
-- a journal-candidate orchestration script that builds backtests, report packages, evidence packages, variance audits, robustness runs, convergence stability, and a frozen manifest.
+- an evidence orchestration script that builds backtests, report packages, evidence packages, variance audits, robustness runs, convergence stability, and a frozen manifest.
 
 The full-state-space model is now wired into the exact/pseudo backtest. A report should use one frozen exact/pseudo build plus its generated report package as the source of truth.
 
@@ -324,4 +326,4 @@ python -m full_state_space_release_revision_dfm.run_initialization_audit --max-o
 python scripts/12_run_journal_candidate_pipeline.py --max-iters 50 100 --max-origins 0 --mcs-bootstrap-reps 5000 --mature-max-iter 50 --run-initialization-audit
 ```
 
-For a journal-style freeze, prefer the full-sample high-iteration run, then build both the report package and the journal evidence package. The package uses `forecast_error = forecast_value - realized_value`, so reported bias is mean forecast minus realized value.
+For a full evidence freeze, prefer the full-sample high-iteration run, then build both the report package and the evidence package. The package uses `forecast_error = forecast_value - realized_value`, so reported bias is mean forecast minus realized value.

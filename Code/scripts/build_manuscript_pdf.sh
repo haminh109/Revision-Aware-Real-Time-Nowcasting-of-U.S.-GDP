@@ -2,21 +2,14 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-package_dir="$repo_root/Applied_Economics_Submission_Package (1)"
+submission_root="$(cd "$repo_root/.." && pwd)"
+package_dir="$submission_root/Final Report"
+tex_file="Final Report.tex"
 
-target="${1:-main}"
-case "$target" in
-  main)
-    tex_file="Applied_Economics_Main_Manuscript.tex"
-    ;;
-  anonymous|anon)
-    tex_file="Applied_Economics_Main_Manuscript_Anonymous.tex"
-    ;;
-  *)
-    echo "Usage: $0 [main|anonymous]" >&2
-    exit 2
-    ;;
-esac
+if [[ "${1:-main}" != "main" ]]; then
+  echo "Only the final course-report PDF is included in this submission package." >&2
+  exit 2
+fi
 
 if ! command -v tectonic >/dev/null 2>&1; then
   echo "tectonic is required but was not found in PATH." >&2

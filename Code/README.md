@@ -1,39 +1,27 @@
-# RADFM: Release-Structured Revision-Aware Real-Time GDP Nowcasting
+# RADFM Code: Release-Structured Revision-Aware Real-Time GDP Nowcasting
 
-This repository is the canonical RADFM project workspace for the GDP
-release-ladder nowcasting paper. It contains the full-state Kalman/EM code path
-and the manuscript layer needed for a defensible empirical package:
-no-revision, MIDAS/UMIDAS, and optional SPF benchmarks; exact/pseudo timing;
-report tables; journal evidence; variance/convergence audits; and
-freeze-oriented run scripts.
+This `Code/` folder contains the reproducible code, configuration files, tests,
+documentation, validation metadata, and empirical output artifacts for the
+course submission **Release-Ladder Real-Time Nowcasting of U.S. GDP**.
 
-The current defensible claim is:
+The repository root is intentionally organized as a compact submission package:
+
+- `Final Report/`: the editable LaTeX report, compiled PDF, and report figures.
+- `Code/`: source code, run scripts, tests, configs, documentation, validation
+  metadata, and result outputs.
+
+The empirical claim supported by this package is:
 
 > Release-structured, revision-aware real-time nowcasting of U.S. GDP using a
 > quarterly release-ladder state-space model fed by vintage-correct
 > mixed-frequency monthly information.
 
-The repo now includes an experimental `monthly_mixed_frequency_kalman_em`
-benchmark where monthly indicators enter the Kalman observation equation at
-monthly frequency and GDP releases enter as sparse quarter-end observations.
-Treat it as a candidate Q2 robustness model until a full-sample frozen run,
-convergence audit, and timing audit confirm it is stable enough for headline
-claims.
-
-See `docs/Q2_MANUSCRIPT_ROADMAP.md` for the manuscript upgrade roadmap and
-recommended run commands.
-
-Current manuscript and course-report deliverables live in:
-
-- `Applied_Economics_Submission_Package (1)/`
-- `Final Project/`
-
 Generated empirical outputs and replication-style result artifacts live under
-`outputs/`. Raw and intermediate vintage data are not committed because they are
-large and source-dependent; see `data/README.md` for the expected local data
-layout and rebuild path.
+`outputs/`. Raw and intermediate vintage data are source-dependent and are not
+bundled in full; see `data/README.md` for the expected local data layout and
+rebuild path.
 
-## Makefile shortcuts
+## Reproducing and inspecting the code
 
 The repository includes a `Makefile` so common replication commands can be run
 from short, stable targets:
@@ -43,15 +31,15 @@ make help           # list available targets
 make data-build     # rebuild data layers and validation reports
 make pipeline-smoke # quick smoke test of the journal pipeline
 make pipeline-full  # full frozen journal-candidate run; compute intensive
-make pdf            # rebuild the main manuscript PDF
-make pdf-all        # rebuild main and anonymous manuscript PDFs
+make pdf            # rebuild ../Final Report/Final Report.pdf
 make test           # run the test suite
 ```
 
 The Makefile is a convenience layer over the scripts in `scripts/`; it does not
 replace the detailed runbooks in `docs/`.
 
-The goal is to build a research-grade, reproducible data and modeling pipeline for real-time GDP nowcasting using:
+The project builds a reproducible data and modeling pipeline for real-time GDP
+nowcasting using:
 
 - **RTDSM / Philadelphia Fed** for release-specific GDP targets and complete vintage histories
 - **ALFRED / FRED** for vintage monthly indicators
@@ -86,34 +74,21 @@ Stage 1 begins only after Stage 0 is locked. It will create normalized artifacts
 ## Repository structure
 
 ```text
-.
+Code/
 ├── configs/
 │   └── stage0_manifest.json
 ├── data/
-│   ├── raw/
-│   │   ├── alfred/
-│   │   │   ├── series_observations/
-│   │   │   └── vintage_dates/
-│   │   ├── bea/
-│   │   │   └── api/
-│   │   ├── calendars/
-│   │   │   ├── bea/
-│   │   │   ├── bls/
-│   │   │   ├── census/
-│   │   │   └── fed_g17/
-│   │   └── rtdsm/
-│   │       └── routput/
+│   ├── README.md
 │   └── metadata/
 │       └── stage0_validation_report.json
 ├── docs/
-│   └── STAGE_0_CHECKLIST.md
+├── full_state_space_release_revision_dfm/
+├── outputs/
 ├── scripts/
-│   ├── build_census_proxy_calendar.py
-│   ├── download_alfred_and_calendars.py
-│   ├── download_bea.py
-│   └── validate_stage0.py
+├── tests/
 ├── .env.example
 ├── .gitignore
+├── Makefile
 ├── requirements.txt
 └── README.md
 ```

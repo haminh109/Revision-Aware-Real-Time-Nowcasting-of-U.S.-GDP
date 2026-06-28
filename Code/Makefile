@@ -7,7 +7,7 @@ MATURE_MAX_ITER ?= 50
 MATURE_VARIANTS ?= mature_1y mature_3y mature_latest
 FREEZE_NAME ?= radfm_journal_candidate
 
-.PHONY: help install fetch-data stage0 stage1 stage2 timing-inputs validate data-build pipeline-smoke pipeline-full pdf pdf-anonymous pdf-all test clean-pycache
+.PHONY: help install fetch-data stage0 stage1 stage2 timing-inputs validate data-build pipeline-smoke pipeline-full pdf pdf-all test clean-pycache
 
 help:
 	@echo "RADFM Makefile targets"
@@ -27,9 +27,7 @@ help:
 	@echo "  make pipeline-full    Full journal-candidate pipeline; can take a long time"
 	@echo ""
 	@echo "Manuscript:"
-	@echo "  make pdf              Build main manuscript PDF"
-	@echo "  make pdf-anonymous    Build anonymous manuscript PDF"
-	@echo "  make pdf-all          Build both manuscript PDFs"
+	@echo "  make pdf              Rebuild ../Final Report/Final Report.pdf"
 	@echo ""
 	@echo "Quality:"
 	@echo "  make test             Run pytest"
@@ -99,12 +97,9 @@ pipeline-full:
 		--freeze-name $(FREEZE_NAME)
 
 pdf:
-	bash scripts/build_manuscript_pdf.sh main
+	bash scripts/build_manuscript_pdf.sh
 
-pdf-anonymous:
-	bash scripts/build_manuscript_pdf.sh anonymous
-
-pdf-all: pdf pdf-anonymous
+pdf-all: pdf
 
 test:
 	$(PYTHON) -m pytest

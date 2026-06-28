@@ -1,0 +1,75 @@
+{
+  "stage": "stage_2",
+  "status": "PASS",
+  "project_root": "<PROJECT_ROOT>",
+  "script_checks": {
+    "present": [
+      "scripts/stage2_semantic_registry.py",
+      "scripts/05_build_target_definition_tables.py",
+      "scripts/06_build_indicator_metadata.py",
+      "scripts/07_build_release_taxonomy_and_mappings.py",
+      "scripts/08_build_calendar_coverage_metadata.py",
+      "scripts/09_build_silver_curated_layer.py",
+      "scripts/validate_stage2.py"
+    ],
+    "missing": [],
+    "status": "PASS"
+  },
+  "artifact_checks": {
+    "target_definition_table": {
+      "path": "data/silver/targets/target_definition_table.csv",
+      "status": "PASS",
+      "row_count": 2,
+      "issues": []
+    },
+    "gdp_release_stage_silver": {
+      "path": "data/silver/targets/gdp_release_stage_silver.csv",
+      "status": "PASS",
+      "row_count": 957,
+      "issues": []
+    },
+    "gdp_complete_vintages_silver": {
+      "path": "data/silver/targets/gdp_complete_vintages_silver.csv",
+      "status": "PASS",
+      "row_count": 47087,
+      "issues": []
+    },
+    "indicator_metadata": {
+      "path": "data/silver/indicators/indicator_metadata.csv",
+      "status": "PASS",
+      "row_count": 26,
+      "issues": []
+    },
+    "indicator_release_map": {
+      "path": "data/silver/indicators/indicator_release_map.csv",
+      "status": "PASS",
+      "row_count": 26,
+      "issues": []
+    },
+    "release_block_taxonomy": {
+      "path": "data/silver/calendars/release_block_taxonomy.csv",
+      "status": "PASS",
+      "row_count": 71,
+      "issues": []
+    },
+    "release_calendar_silver": {
+      "path": "data/silver/calendars/release_calendar_silver.csv",
+      "status": "PASS",
+      "row_count": 4004,
+      "issues": []
+    },
+    "calendar_coverage_metadata": {
+      "path": "data/silver/calendars/calendar_coverage_metadata.csv",
+      "status": "PASS",
+      "row_count": 5,
+      "issues": []
+    },
+    "source_limitations_registry": {
+      "path": "data/silver/governance/source_limitations_registry.csv",
+      "status": "PASS",
+      "row_count": 8,
+      "issues": []
+    }
+  },
+  "hard_failures": []
+}

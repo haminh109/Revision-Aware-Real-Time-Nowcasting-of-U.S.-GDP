@@ -1,0 +1,14 @@
+audit_item,value,detail
+gdp_target_file_rows,957,<PROJECT_ROOT>/data/bronze/targets/gdp_release_targets.csv
+point_forecast_coverage::exact::pre_advance::A,78,minimum unique target quarters across compared models
+point_forecast_coverage::exact::pre_second::S,77,minimum unique target quarters across compared models
+point_forecast_coverage::exact::pre_third::T,78,minimum unique target quarters across compared models
+point_forecast_coverage::pseudo::pre_advance::A,78,minimum unique target quarters across compared models
+point_forecast_coverage::pseudo::pre_second::S,77,minimum unique target quarters across compared models
+point_forecast_coverage::pseudo::pre_third::T,78,minimum unique target quarters across compared models
+revision_forecast_coverage::exact::pre_advance::DELTA_SA,77,minimum unique target quarters across compared models
+revision_forecast_coverage::exact::pre_second::DELTA_TS,77,minimum unique target quarters across compared models
+revision_forecast_coverage::exact::pre_third::DELTA_MT,78,minimum unique target quarters across compared models
+revision_forecast_coverage::pseudo::pre_advance::DELTA_SA,77,minimum unique target quarters across compared models
+revision_forecast_coverage::pseudo::pre_second::DELTA_TS,77,minimum unique target quarters across compared models
+revision_forecast_coverage::pseudo::pre_third::DELTA_MT,78,minimum unique target quarters across compared models

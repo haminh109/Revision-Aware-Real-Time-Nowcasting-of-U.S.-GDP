@@ -1,0 +1,39 @@
+{
+  "generated_utc": "2026-05-23T17:57:52+00:00",
+  "source_dir": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100",
+  "output_dir": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package",
+  "source_rows": {
+    "forecast_results": 5258,
+    "revision_forecast_results": 5236,
+    "metrics_summary": 66,
+    "revision_metrics_summary": 66,
+    "exact_pseudo_point_gaps": 33,
+    "exact_pseudo_revision_gaps": 33,
+    "gdp_release_calendar": 960,
+    "failures": 0
+  },
+  "output_files": {
+    "headline_point_results": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/headline_point_results.csv",
+    "headline_revision_results": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/headline_revision_results.csv",
+    "headline_exact_vs_pseudo": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/headline_exact_vs_pseudo.csv",
+    "headline_revision_exact_vs_pseudo": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/headline_revision_exact_vs_pseudo.csv",
+    "point_metrics_full": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/point_metrics_full.csv",
+    "revision_metrics_full": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/revision_metrics_full.csv",
+    "subsample_robustness_point": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/subsample_robustness_point.csv",
+    "subsample_robustness_revision": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/subsample_robustness_revision.csv",
+    "subsample_robustness_point_winners": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/subsample_robustness_point_winners.csv",
+    "subsample_robustness_revision_winners": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/subsample_robustness_revision_winners.csv",
+    "winner_stability": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/winner_stability.csv",
+    "data_coverage_summary": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/data_coverage_summary.csv",
+    "convergence_diagnostics": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/convergence_diagnostics.csv",
+    "latex_tables": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/latex_tables.tex",
+    "journal_results_draft": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/journal_results_draft.md"
+  },
+  "figures": [
+    "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/figures/point_rmse_by_model_exact.png",
+    "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/figures/point_rmse_by_model_pseudo.png",
+    "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/figures/revision_rmse_by_model_exact.png",
+    "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_midas_lags9_max_iter100_report_package/figures/exact_minus_pseudo_point_gaps.png"
+  ],
+  "bias_convention": "forecast_error = forecast_value - realized_value"
+}

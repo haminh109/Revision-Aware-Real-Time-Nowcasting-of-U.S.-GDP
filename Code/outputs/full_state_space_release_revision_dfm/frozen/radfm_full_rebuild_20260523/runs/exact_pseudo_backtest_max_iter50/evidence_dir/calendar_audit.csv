@@ -1,0 +1,5 @@
+audit_item,value,detail
+calendar_rows,960,gdp_release_calendar_used.csv
+calendar_status::derived_from_alfred_gdpc1_vintage_date,641,all release rounds
+calendar_status::fallback_deterministic_month_end,319,all release rounds
+headline_A_S_T_calendar_status::derived_from_alfred_gdpc1_vintage_date,240,2005Q1-2024Q4

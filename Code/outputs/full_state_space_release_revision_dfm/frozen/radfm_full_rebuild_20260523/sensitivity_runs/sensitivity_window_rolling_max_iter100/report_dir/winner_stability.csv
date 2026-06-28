@@ -1,0 +1,37 @@
+table,target_id,subsample,n_cells,structured_family_cells,structured_family_share,distinct_winning_models,revision_target_id
+point,A,exclude_pandemic,2,0,0.0,spf,
+point,A,full_sample,2,0,0.0,spf,
+point,A,gfc_and_recovery,2,0,0.0,spf,
+point,A,post_gfc_pre_pandemic,2,0,0.0,bridge,
+point,A,post_pandemic,2,0,0.0,spf,
+point,A,pre_gfc,2,0,0.0,spf,
+point,S,exclude_pandemic,2,0,0.0,monthly_mixed_frequency_kalman_em,
+point,S,full_sample,2,0,0.0,no_revision,
+point,S,gfc_and_recovery,2,0,0.0,monthly_mixed_frequency_kalman_em,
+point,S,post_gfc_pre_pandemic,2,2,1.0,joint_indicator_revision_dfm_full_kalman_em,
+point,S,post_pandemic,2,0,0.0,no_revision,
+point,S,pre_gfc,2,0,0.0,monthly_mixed_frequency_kalman_em,
+point,T,exclude_pandemic,2,0,0.0,no_revision,
+point,T,full_sample,2,0,0.0,no_revision,
+point,T,gfc_and_recovery,2,0,0.0,no_revision,
+point,T,post_gfc_pre_pandemic,2,2,1.0,revision_dfm_kalman_em,
+point,T,post_pandemic,2,2,1.0,release_dfm,
+point,T,pre_gfc,2,0,0.0,indicator_revision_only_dfm_kalman_em,
+revision,,exclude_pandemic,2,0,0.0,no_revision; spf; indicator_revision_only_dfm_kalman_em,DELTA_MT
+revision,,full_sample,2,0,0.0,no_revision; spf; indicator_revision_only_dfm_kalman_em,DELTA_MT
+revision,,gfc_and_recovery,2,0,0.0,standard_dfm,DELTA_MT
+revision,,post_gfc_pre_pandemic,2,2,1.0,release_dfm,DELTA_MT
+revision,,post_pandemic,2,2,1.0,revision_dfm_kalman_em,DELTA_MT
+revision,,pre_gfc,2,0,0.0,no_revision; spf; indicator_revision_only_dfm_kalman_em,DELTA_MT
+revision,,exclude_pandemic,2,0,0.0,monthly_mixed_frequency_kalman_em,DELTA_SA
+revision,,full_sample,2,0,0.0,no_revision; spf; indicator_revision_only_dfm_kalman_em,DELTA_SA
+revision,,gfc_and_recovery,2,0,0.0,monthly_mixed_frequency_kalman_em,DELTA_SA
+revision,,post_gfc_pre_pandemic,2,2,1.0,joint_indicator_revision_dfm_full_kalman_em,DELTA_SA
+revision,,post_pandemic,2,0,0.0,no_revision; spf; indicator_revision_only_dfm_kalman_em,DELTA_SA
+revision,,pre_gfc,2,2,1.0,joint_indicator_revision_dfm_full_kalman_em,DELTA_SA
+revision,,exclude_pandemic,2,0,0.0,no_revision; spf; indicator_revision_only_dfm_kalman_em,DELTA_TS
+revision,,full_sample,2,0,0.0,no_revision; spf; indicator_revision_only_dfm_kalman_em,DELTA_TS
+revision,,gfc_and_recovery,2,2,1.0,joint_indicator_revision_dfm_full_kalman_em,DELTA_TS
+revision,,post_gfc_pre_pandemic,2,0,0.0,standard_dfm,DELTA_TS
+revision,,post_pandemic,2,0,0.0,standard_dfm,DELTA_TS
+revision,,pre_gfc,2,2,1.0,release_dfm,DELTA_TS

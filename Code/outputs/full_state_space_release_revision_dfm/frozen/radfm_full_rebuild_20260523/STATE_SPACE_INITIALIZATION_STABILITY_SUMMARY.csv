@@ -1,0 +1,9 @@
+table,model_id,rows,min_n_seeds,max_rmse_range,median_rmse_range,min_convergence_rate,max_mean_iterations
+point,indicator_revision_only_dfm_kalman_em,6,5,0.0470697910073303,0.00954627431459785,0.3333333333333333,
+point,joint_indicator_revision_dfm_full_kalman_em,6,5,0.0302573062709152,0.0076905835464670495,0.5,
+point,monthly_mixed_frequency_kalman_em,6,5,0.0,0.0,1.0,
+point,revision_dfm_kalman_em,6,5,0.0006618126151707,0.0004712928686778,1.0,
+revision,indicator_revision_only_dfm_kalman_em,6,5,0.0,0.0,0.3333333333333333,
+revision,joint_indicator_revision_dfm_full_kalman_em,6,5,0.0043921453195683,0.0003032795468827,0.5,
+revision,monthly_mixed_frequency_kalman_em,6,5,0.0,0.0,1.0,
+revision,revision_dfm_kalman_em,6,5,0.0002711566643198,2.1564698765130785e-05,1.0,

@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+.DS_Store
+*.pyc
+.ipynb_checkpoints/
+data/bronze/indicators/alfred_monthly_long.csv
+/logs/
+.pytest_cache/
+.ruff_cache/
+dist/
+
+# Local journal submission package; keep out of repository pushes
+/Applied_Economics_Submission_Package (1)/

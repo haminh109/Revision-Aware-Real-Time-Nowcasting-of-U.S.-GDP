@@ -1,0 +1,367 @@
+{
+  "stage": "stage_0",
+  "status": "PASS",
+  "project_root": "<PROJECT_ROOT>",
+  "structural_checks": {
+    "required_root_files": {
+      "present": [
+        "README.md",
+        "requirements.txt",
+        ".env.example",
+        ".gitignore"
+      ],
+      "missing": []
+    },
+    "required_stage0_scripts": {
+      "present": [
+        "scripts/download_alfred_and_calendars.py",
+        "scripts/download_bea.py",
+        "scripts/build_census_proxy_calendar.py",
+        "scripts/validate_stage0.py"
+      ],
+      "missing": []
+    },
+    "required_directories": {
+      "present": [
+        "data/raw/rtdsm/routput",
+        "data/raw/alfred/vintage_dates",
+        "data/raw/alfred/series_observations",
+        "data/raw/bea/api",
+        "data/raw/calendars/bea",
+        "data/raw/calendars/bls",
+        "data/raw/calendars/census",
+        "data/raw/calendars/fed_g17",
+        "data/metadata"
+      ],
+      "missing": []
+    },
+    "required_rtdsm_files": {
+      "present": [
+        "data/raw/rtdsm/routput/ROUTPUTQvQd.xlsx",
+        "data/raw/rtdsm/routput/routput_first_second_third.xlsx"
+      ],
+      "missing": []
+    },
+    "optional_rtdsm_files": {
+      "present": [
+        "data/raw/rtdsm/routput/routputMvQd.xlsx"
+      ],
+      "missing": []
+    },
+    "required_bea_files": {
+      "present": [
+        "data/raw/bea/api/T10101_Q_ALL.json",
+        "data/raw/bea/api/T10106_Q_ALL.json"
+      ],
+      "missing": []
+    },
+    "required_calendar_files": {
+      "present": [
+        "data/raw/calendars/bea/full_release_schedule.html",
+        "data/raw/calendars/bls/employment_situation.html",
+        "data/raw/calendars/bls/current_year.html",
+        "data/raw/calendars/fed_g17/release_dates.html"
+      ],
+      "missing": []
+    },
+    "optional_calendar_files": {
+      "present": [
+        "data/raw/calendars/census/economic_indicators_calendar.blocked.html"
+      ],
+      "missing": [
+        "data/raw/calendars/census/economic_indicators_calendar.html",
+        "data/raw/calendars/census/economic_indicators_calendar.manual.html"
+      ]
+    },
+    "recommended_calendar_files": {
+      "present": [
+        "data/raw/calendars/census/census_proxy_release_events.csv",
+        "data/raw/calendars/census/census_proxy_release_calendar.csv",
+        "data/raw/calendars/census/census_proxy_calendar_metadata.json"
+      ],
+      "missing": []
+    },
+    "requirements_file": {
+      "status": "PASS",
+      "detail": "requirements.txt contains the baseline Stage 0 dependencies.",
+      "missing_tokens": []
+    },
+    "env_template": {
+      "status": "PASS",
+      "detail": ".env.example contains the expected API-key placeholders.",
+      "missing_keys": []
+    },
+    "gitignore": {
+      "status": "PASS",
+      "detail": ".gitignore covers local environment files and caches.",
+      "missing_tokens": []
+    }
+  },
+  "semantic_checks": {
+    "rtdsm_release_specific": {
+      "status": "PASS",
+      "detail": "The RTDSM release-stage workbook has the expected sheets, columns, and numeric content.",
+      "row_count": 241,
+      "unit_line": "Unit of Measurement: Q/Q Growth (Annual Rate, Percentage Points)",
+      "sheet_names": [
+        "NOTES",
+        "DATA"
+      ]
+    },
+    "rtdsm_complete_vintages": {
+      "status": "PASS",
+      "detail": "The RTDSM complete-vintage workbook has the expected quarterly vintage-matrix schema.",
+      "row_count": 317,
+      "vintage_column_count": 243,
+      "sample_vintage_columns": [
+        "ROUTPUT65Q4",
+        "ROUTPUT66Q1",
+        "ROUTPUT66Q2",
+        "ROUTPUT66Q3",
+        "ROUTPUT66Q4"
+      ]
+    },
+    "rtdsm_optional_monthly_vintages": {
+      "status": "PASS",
+      "detail": "The optional RTDSM monthly workbook has the expected monthly vintage-matrix schema.",
+      "sample_invalid_columns": [],
+      "vintage_column_count": 727
+    },
+    "bea_calendar": {
+      "status": "PASS",
+      "detail": "The BEA release schedule HTML contains a parseable release table.",
+      "row_count": 61,
+      "declared_scope_year": "2026"
+    },
+    "bls_current_year_calendar": {
+      "status": "PASS",
+      "detail": "The BLS current-year calendar HTML contains parseable dated release rows.",
+      "row_count": 159
+    },
+    "bls_employment_calendar": {
+      "status": "PASS",
+      "detail": "The Employment Situation calendar HTML contains a parseable schedule table.",
+      "row_count": 14
+    },
+    "fed_g17_calendar": {
+      "status": "PASS",
+      "detail": "The Federal Reserve G.17 HTML contains parseable historical and scheduled release-date rows.",
+      "row_count": 952,
+      "sample_invalid_rows": []
+    },
+    "census_proxy": {
+      "status": "PASS",
+      "detail": "Census proxy artifacts are present and preserve the proxy-not-official distinction honestly.",
+      "series_event_rows": 4857,
+      "block_calendar_rows": 2833
+    },
+    "bea_api_tables": {
+      "data/raw/bea/api/T10101_Q_ALL.json": {
+        "status": "PASS",
+        "detail": "BEA API payload is populated and the request UserID is scrubbed.",
+        "row_count": 7900,
+        "utc_production_time": "2026-05-23T07:11:50.980"
+      },
+      "data/raw/bea/api/T10106_Q_ALL.json": {
+        "status": "PASS",
+        "detail": "BEA API payload is populated and the request UserID is scrubbed.",
+        "row_count": 4739,
+        "utc_production_time": "2026-05-23T07:00:03.013"
+      }
+    },
+    "required_alfred_series": {
+      "GDPC1": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 414,
+        "observation_column_count": 415
+      },
+      "A191RL1Q225SBEA": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 123,
+        "observation_column_count": 124
+      },
+      "PAYEMS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 855,
+        "observation_column_count": 856
+      },
+      "UNRATE": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 795,
+        "observation_column_count": 796
+      },
+      "INDPRO": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 1219,
+        "observation_column_count": 1220
+      },
+      "TCU": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 381,
+        "observation_column_count": 382
+      },
+      "AWHMAN": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 774,
+        "observation_column_count": 775
+      },
+      "W875RX1": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 191,
+        "observation_column_count": 192
+      },
+      "DSPIC96": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 562,
+        "observation_column_count": 563
+      },
+      "PCECC96": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 697,
+        "observation_column_count": 698
+      },
+      "RSAFS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 320,
+        "observation_column_count": 321
+      },
+      "RSXFS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 320,
+        "observation_column_count": 321
+      },
+      "UMCSENT": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 333,
+        "observation_column_count": 334
+      },
+      "HOUST": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 786,
+        "observation_column_count": 787
+      },
+      "PERMIT": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 614,
+        "observation_column_count": 615
+      },
+      "DGORDER": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 661,
+        "observation_column_count": 662
+      },
+      "NEWORDER": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 708,
+        "observation_column_count": 709
+      },
+      "BUSINV": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 357,
+        "observation_column_count": 358
+      },
+      "ISRATIO": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 352,
+        "observation_column_count": 353
+      },
+      "BOPGSTB": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 353,
+        "observation_column_count": 354
+      },
+      "BOPTEXP": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 193,
+        "observation_column_count": 194
+      },
+      "BOPTIMP": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 193,
+        "observation_column_count": 194
+      },
+      "FEDFUNDS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 360,
+        "observation_column_count": 361
+      },
+      "TB3MS": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 355,
+        "observation_column_count": 356
+      },
+      "GS10": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 354,
+        "observation_column_count": 355
+      },
+      "T10Y3MM": {
+        "status": "PASS",
+        "detail": "ALFRED raw files exist and the observations CSV is parseable.",
+        "schema": "wide_vintage_matrix",
+        "vintage_date_count": 145,
+        "observation_column_count": 146
+      }
+    },
+    "optional_alfred_series": {}
+  },
+  "warnings": [
+    "Official Census HTML is optional and currently unavailable; the ALFRED-based proxy calendar remains the timing source.",
+    "Optional ALFRED series are not present; this does not block Stage 0 or Stage 1.",
+    "RTDSM release-specific targets are explicitly q/q annualized growth rates, while the complete-vintage RTDSM matrix is a separate level-like numeric history; downstream stages must not silently treat them as identical measures.",
+    "BEA official calendar raw coverage currently appears to be a current-year snapshot (2026), not a full historical archive.",
+    "BLS official calendar raw coverage currently reflects current-year and scheduled pages, not a completed historical archive.",
+    "Federal Reserve G.17 release dates are official, but the raw page does not publish intraday release times; no time should be fabricated downstream."
+  ],
+  "hard_failures": []
+}

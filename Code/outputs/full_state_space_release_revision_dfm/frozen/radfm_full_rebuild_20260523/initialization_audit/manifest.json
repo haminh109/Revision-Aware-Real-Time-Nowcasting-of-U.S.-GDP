@@ -1,0 +1,26 @@
+{
+  "generated_utc": "2026-05-23T22:50:09+00:00",
+  "repo_root": "<PROJECT_ROOT>",
+  "output_root": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/initialization_audit_journal_candidate",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "max_iter": 50,
+  "max_origins": 12,
+  "initialization_jitter": 0.02,
+  "eval_start": "2005:Q1",
+  "eval_end": "2024:Q4",
+  "gdp_release_targets": "",
+  "parallel_jobs": 2,
+  "output_files": {
+    "initialization_point_runs": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/initialization_audit_journal_candidate/initialization_point_runs.csv",
+    "initialization_revision_runs": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/initialization_audit_journal_candidate/initialization_revision_runs.csv",
+    "initialization_point_stability": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/initialization_audit_journal_candidate/initialization_point_stability.csv",
+    "initialization_revision_stability": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/initialization_audit_journal_candidate/initialization_revision_stability.csv",
+    "manifest": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/initialization_audit_journal_candidate/manifest.json"
+  }
+}

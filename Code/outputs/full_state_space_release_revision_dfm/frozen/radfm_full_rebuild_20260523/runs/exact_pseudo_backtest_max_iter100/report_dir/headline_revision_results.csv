@@ -1,0 +1,7 @@
+timing_mode,checkpoint_id,revision_target_id,best_models,best_RMSE,best_MAE,best_bias,best_relative_RMSFE,best_DM_test,best_sign_accuracy,best_n_forecasts,n_models_compared,structured_family_win
+exact,pre_advance,DELTA_SA,no_revision; spf; indicator_revision_only_dfm_kalman_em,0.5696627235545563,0.3997025316455696,-0.0657987341772151,0.8400344207902792,0.1379643409208686,0.0,79,11,False
+exact,pre_second,DELTA_TS,no_revision; spf; indicator_revision_only_dfm_kalman_em,0.3613823734957444,0.237986075949367,-0.0544341772151898,0.8859230727429768,0.0909537041511906,0.0,79,11,False
+exact,pre_third,DELTA_MT,no_revision; spf; indicator_revision_only_dfm_kalman_em,1.338732745080212,1.05551,-0.032005,0.4418842591767559,0.0884496247801764,0.0,80,11,False
+pseudo,pre_advance,DELTA_SA,no_revision; spf; indicator_revision_only_dfm_kalman_em,0.5696627235545563,0.3997025316455696,-0.0657987341772151,0.8400344207902792,0.1379643409208686,0.0,79,11,False
+pseudo,pre_second,DELTA_TS,no_revision; spf; indicator_revision_only_dfm_kalman_em,0.3613823734957444,0.237986075949367,-0.0544341772151898,0.8859230727429768,0.0909537041511906,0.0,79,11,False
+pseudo,pre_third,DELTA_MT,no_revision; spf; indicator_revision_only_dfm_kalman_em,1.338732745080212,1.05551,-0.032005,0.4418842591767559,0.0884496247801764,0.0,80,11,False

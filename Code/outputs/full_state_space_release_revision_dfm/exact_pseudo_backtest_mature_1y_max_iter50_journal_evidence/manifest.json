@@ -1,0 +1,51 @@
+{
+  "generated_utc": "2026-05-23T11:13:32+00:00",
+  "repo_root": "<PROJECT_ROOT>",
+  "source_dir": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50",
+  "output_dir": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence",
+  "min_density_calibration": 12,
+  "mcs_bootstrap_reps": 1000,
+  "output_files": {
+    "forecast_comparison_point_dm": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/forecast_comparison_point_dm.csv",
+    "forecast_comparison_revision_dm": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/forecast_comparison_revision_dm.csv",
+    "forecast_comparison_point_clark_west": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/forecast_comparison_point_clark_west.csv",
+    "forecast_comparison_revision_clark_west": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/forecast_comparison_revision_clark_west.csv",
+    "model_confidence_set_proxy_point": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/model_confidence_set_proxy_point.csv",
+    "model_confidence_set_proxy_revision": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/model_confidence_set_proxy_revision.csv",
+    "model_confidence_set_block_bootstrap_point": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/model_confidence_set_block_bootstrap_point.csv",
+    "model_confidence_set_block_bootstrap_revision": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/model_confidence_set_block_bootstrap_revision.csv",
+    "bootstrap_loss_difference_point": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/bootstrap_loss_difference_point.csv",
+    "bootstrap_loss_difference_revision": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/bootstrap_loss_difference_revision.csv",
+    "density_point_records": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/density_point_records.csv",
+    "density_revision_records": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/density_revision_records.csv",
+    "density_point_metrics": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/density_point_metrics.csv",
+    "density_revision_metrics": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/density_revision_metrics.csv",
+    "cumulative_loss_point": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/cumulative_loss_point.csv",
+    "cumulative_loss_revision": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/cumulative_loss_revision.csv",
+    "external_benchmark_coverage": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/external_benchmark_coverage.csv",
+    "common_sample_spf_point": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/common_sample_spf_point.csv",
+    "common_sample_spf_revision": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/common_sample_spf_revision.csv",
+    "revision_threshold_diagnostics": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/revision_threshold_diagnostics.csv",
+    "revision_sign_threshold_diagnostics": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/revision_sign_threshold_diagnostics.csv",
+    "revision_magnitude_bins": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/revision_magnitude_bins.csv",
+    "release_mechanism_analysis": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/release_mechanism_analysis.csv",
+    "calendar_audit": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/calendar_audit.csv",
+    "series_coverage_audit": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/series_coverage_audit.csv",
+    "target_coverage_audit": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/target_coverage_audit.csv",
+    "summary": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/journal_evidence_summary.md"
+  },
+  "figures": [
+    "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/figures/point_cumulative_loss_exact_pre_third_T_joint_vs_release.png",
+    "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/figures/point_cumulative_loss_exact_pre_second_S_release_vs_standard.png",
+    "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/exact_pseudo_backtest_mature_1y_max_iter50_journal_evidence/figures/revision_cumulative_loss_exact_delta_sa_joint_vs_release.png"
+  ],
+  "method_notes": [
+    "DM tests use HAC/Newey-West long-run variance with lag floor(n^(1/3)).",
+    "Clark-West rows are diagnostic approximations for nested or near-nested comparisons.",
+    "MCS proxy output is kept for continuity; block-bootstrap MCS-style output is also generated.",
+    "Bootstrap RMSE/MAE difference confidence intervals use moving-block resampling of aligned forecast errors.",
+    "State-space density forecasts use model-implied forecast variances when present; other rows use expanding residual-calibrated Gaussian variances.",
+    "SPF common-sample tables are generated only when an SPF benchmark is present in the source forecast records.",
+    "Revision diagnostics report thresholded direction accuracy because near-zero GDP revisions can dominate raw sign accuracy."
+  ]
+}

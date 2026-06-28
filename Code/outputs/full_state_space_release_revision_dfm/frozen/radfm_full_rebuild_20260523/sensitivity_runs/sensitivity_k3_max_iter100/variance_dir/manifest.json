@@ -1,0 +1,12 @@
+{
+  "generated_utc": "2026-05-23T15:54:32+00:00",
+  "source_dir": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_k3_max_iter100",
+  "output_dir": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_k3_max_iter100_variance_audit",
+  "output_files": {
+    "variance_point_audit": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_k3_max_iter100_variance_audit/variance_point_audit.csv",
+    "variance_revision_audit": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_k3_max_iter100_variance_audit/variance_revision_audit.csv",
+    "covariance_matrix_audit": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_k3_max_iter100_variance_audit/covariance_matrix_audit.csv",
+    "summary": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_k3_max_iter100_variance_audit/variance_audit_summary.md",
+    "manifest": "<PROJECT_ROOT>/outputs/full_state_space_release_revision_dfm/sensitivity_k3_max_iter100_variance_audit/manifest.json"
+  }
+}
